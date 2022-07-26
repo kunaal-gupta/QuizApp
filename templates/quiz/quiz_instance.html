@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+    <style>
+            html {
+            user-select: none;
+        }
+
+    </style>
+
+    <header id="header" class="header bg-white navbar-scrolltofixed ">
+        <div class="header-nav navbar-sticky navbar-sticky-animated">
+
+            <div style="background-color: #0BA8E6; font-size: 3.5vw; color: white; font-family: Calibri" >
+                <center> <b> Welcome to {{ ProgCode }} Mock Quiz {{ QuizNo }} </b> </center>
+            </div>
+
+            <div style = "margin-right:  30px; font-size: 1.4vw" align="right" id="displaytimer"> <b> Timer: {{ time }} minutes</b></div>
+        </div>
+    </header>
+
+    <style>
+        a:hover {
+            background-color: white;
+        }
+    </style>
+
+    <form method='post'>
+        {% csrf_token %}
+        <div style = "margin-left: 60px; margin-right: 240px">
+            <div class = "radio" style = "margin-left: 60px; margin-right: 240px; margin-top: 20px; font-size: 25px">
+                <h4> <label for="b" > <b> Ques: {{ QuesNo }} </b>{{a.Ques}}</label> </h4>
+            </div>
+            <div id="quiz-display" Quiz-num="{{ QuizNo }}" data-present-question="{{ QuesNo}}" data-question-number="{{ QperQuiz}}" style="margin-left: 70px; margin-top: 20px; font-size: 16px">
+
+                {%  if a.Option_1 != '' %}
+                    <div class = "radio" Op-num = "1">
+                        <input class="option form-check-input"  style="margin-left: 20px" type="radio" id="{{a.Option_1}}" value="1" name=" {{ a.Ques }}">
+                        <label class="form-check-label" for="{{ a.Option_1 }}" style="margin-left: 25px">
+                            <h7> {{a.Option_1}} </h7>
+                        </label>
+                    </div>
+
+                {% endif %}
+                {%  if a.Option_2 != '' %}
+                    <div class = "radio" Op-num = "2">
+                        <input class="option form-check-input" style="margin-left: 20px"  type="radio" id="{{ a.Option_2 }}" value="2" name=" {{ a.Ques }}">
+                        <label class="form-check-label" for="{{ a.Option_2 }}" style="margin-left: 25px">
+                            <h7> {{a.Option_2}} </h7>
+                        </label>
+                    </div>
+                {% endif %}
+
+                {%  if a.Option_3 != '' %}
+                    <div class = "radio" >
+                        <input class="option form-check-input" Op-num = "3" style="margin-left: 20px"  type="radio" id="{{ a.Option_3 }}" value="3" name=" {{ a.Ques }}">
+                        <label class="form-check-label" for="{{ a.Option_3 }}" style="margin-left: 25px" >
+                            <h7> {{a.Option_3}} </h7>
+                        </label>
+                    </div>
+                {% endif %}
+
+                {%  if a.Option_4 != '' %}
+                    <div class = "radio" Op-num = "4">
+                        <input class="option form-check-input" style="margin-left: 20px"  type="radio" id="{{ a.Option_4 }}" value="4" name=" {{ a.Ques }}" >
+                        <label class="form-check-label" for="{{ a.Option_4 }}" style="margin-left: 25px">
+                            <h7> {{a.Option_4}} </h7>
+                        </label> <br>
+                    </div>
+                {% endif %}
+                {%  if a.Option_5 != '' %}
+                    <div class = "radio" Op-num = "5">
+                        <input class="option form-check-input" style="margin-left: 20px"  type="radio" id="{{ a.Option_5 }}" value="5" name=" {{ a.Ques }}" >
+                        <label class="form-check-label" for="{{ a.Option_5 }}" style="margin-left: 25px">
+                            <h7> {{a.Option_5}} </h7>
+                        </label> <br>
+                    </div>
+                {% endif %}
+                {%  if a.Option_6 != '' %}
+                    <div class = "radio" Op-num = "6">
+                        <input class="option form-check-input" style="margin-left: 20px"  type="radio" id="{{ a.Option_6 }}" value="6" name=" {{ a.Ques }}" >
+                        <label class="form-check-label" for="{{ a.Option_6 }}" style="margin-left: 25px">
+                            <h7> {{a.Option_6}} </h7>
+                        </label> <br>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+        <div class="inline-block">
+{#            {% if QuesNo != 1 %}#}
+{#            <a style = "margin-left: 100px; font-weight: bold; font-size: 20px"  href = 'http://pppariyojana.com/mock-quiz/account/quiz-1/1' id = 'previous' class="btn btn-info btn-xl mt-15 mr-10">#}
+{#                    Previous </a>#}
+{#            {% endif %}#}
+
+            {% if QuesNo < QperQuiz %}
+            <a style = "margin-left: 1200px; font-weight: bold; font-size: 20px; width: 15%"  id = 'next' class="btn btn-info btn-xl mt-15 mr-10">
+                Next </a>
+            {% endif %}
+        </div>
+
+        <br> <br>
+{#        {% if QuesNo == QperQuiz %}#}
+            <input
+                    type="submit"
+                    id = "submit"
+                    class="btn btn-secondary"
+                    style=" width: 98%; background-color: #0BA8E6; color: white; font-size: 150%; font-weight: bold; margin-left: 1%"
+                    value="Submit "/>
+{#        {% endif %}#}
+    </form>
+
+        <script> window.CSRF_TOKEN = "{{ csrf_token }}";
+            const element = document.getElementById("quiz-display");
+            var presentQNo = parseInt(element.getAttribute("data-present-question"))
+            var quizNo = parseInt(element.getAttribute("Quiz-num"))
+            var totalQNo = parseInt(element.getAttribute("data-question-number"))
+            var optionNo;
+            var lastResponse;
+            element.addEventListener("click", myFunction);
+            function myFunction(event) {
+                var button = event.target
+                lastResponse=button.value
+                console.log(lastResponse)
+            }
+            presentQNo++
+            console.log(presentQNo)
+
+            $(document).ready(function () {
+                if(presentQNo <= totalQNo){
+                    var link = "http://127.0.0.1:8000/mock-quiz/account/quiz-"+quizNo+"/" + presentQNo
+
+
+                    $("#next").click(function () {
+                        $.ajax({
+                            type: 'POST',
+                            url: "http://127.0.0.1:8000/mock-quiz/test/",
+                            data: { "QuizNum":quizNo,"QuesNum": presentQNo-1, "response": lastResponse, csrfmiddlewaretoken: window.CSRF_TOKEN},
+                            success: function (data) {
+                                setTimeout(function () {
+                                    window.location.replace(link);
+                                }, -100);
+                            }
+                        });
+
+                    });
+                } else if (presentQNo == totalQNo+1){
+                    console.log('ready')
+                    $("#submit").click(function () {
+                        $.ajax({
+                            type: 'POST',
+                            url: "http://127.0.0.1:8000/mock-quiz/test/",
+                            data: { "QuizNum":quizNo,"QuesNum": presentQNo-1, "response": lastResponse, csrfmiddlewaretoken: window.CSRF_TOKEN},
+
+                        });
+                    });
+                }
+            });
+
+        </script>
+
+    {% block script %}
+        <script>
+
+            const timer =document.getElementById('displaytimer')
+            let t = {{ time }}
+            var t1;
+            t1 = {{ time }};
+            setInterval(()=>{
+                t1 -= 1
+                if (t1 == t/2) {
+                    window.alert("Half time is left")
+                }
+                timer.innerHTML ="<b>Timer: " +t1+" minutes </b>"
+            },60000)
+
+
+        </script>
+        <script>
+            let time = {{time}}
+            time*=60*1000
+            console.log(time)
+            window.setInterval(function(){
+                document.getElementById("submit").click();
+            }, time);
+        </script>
+    {% endblock script %}
+
+{% endblock %}

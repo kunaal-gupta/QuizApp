@@ -1,0 +1,163 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+{% if user_identity %}
+    {% if user_profile %}
+
+
+        {% block dashboard_content %}
+
+            <script>
+            function scrollWin() {
+              window.scrollBy(0, 650);
+            }
+
+            </script>
+                        <!-- Start main-content -->
+            <div class="main-content">
+            <!-- Section About -->
+            <section id="about" class="bg-silver-light">
+                <div class="container">
+                    <div class="section-content">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h3 class="font-32 font-weight-600 mt-0">Welcome back <span class="text-theme-colored2">{{ user_identity.first_name }} <h3 class="fa fa-user-secret text-theme-colored2"></h3></span></h3>
+                                <p class="font-16 mt-15 mb-15">Practice makes man perfect. Pariyojana is here to help you prep for your next training exam!</p>
+                                <button onclick="scrollWin()"  class="btn btn-info btn-xl mt-15 mr-10"> Practice quiz now </button>
+                                  {% if user.is_authenticated %}
+                                    <a class="nav-link btn btn-default btn-xl mt-15" href="/">Return to Homepage</a>
+
+
+                                  {% endif %}
+
+
+                            </div>
+
+                                <div class="widget no-border">
+                                        <ul>
+                                            <li class="font-14 mb-5"> <i class="fa fa-user text-theme-colored"></i> <a class="text-gray" href="#">{{ user_identity.first_name }} {{ user_identity.last_name }}</a> </li>
+                                            <li class="font-14 mb-5"> <i class="fa fa-envelope-o text-theme-colored"></i> <a class="text-gray" href="#">{{ user_identity.email }}</a> </li>
+                                            <li class="font-14 mb-5"> <i class="fa fa-calendar-times-o text-theme-colored"></i> <a class="text-gray" href="#">Date Joined: {{ user_identity.date_joined }} </a>
+                                            <li class="font-14 mb-5"> <i class="fa fa-user-times text-theme-colored"></i> <a class="text-gray" href="#">Last Login: {{ user_identity.last_login }} </a> </li>
+                                        </ul>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Section: Projects -->
+            <section class="layer-overlay overlay-theme-colored-9" >
+                <div class="container pt-40 pb-sm-30">
+                    <div class="row mt-30 text-center">
+                        <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                            <div class="funfact">
+                                <i class="pe-7s-notebook mb-20 text-white"></i>
+                                <h2 data-animation-duration="1000" data-value="{{ Quizzes_Completed }}" class="animate-number text-theme-colored2 font-42 font-weight-600 mt-0 mb-15">10</h2>
+                                <h5 class="text-white text-uppercase">Quizzes Completed</h5>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                            <div class="funfact">
+                                <i class="pe-7s-bookmarks mb-20 text-white"></i>
+                                <h2 data-animation-duration="1000" data-value="{{ Q_remaining }}" class="animate-number text-theme-colored2 font-42 font-weight-600 mt-0 mb-15">0</h2>
+                                <h5 class="text-white text-uppercase">Quizzes Remaining</h5>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                            <div class="funfact">
+                                <i class="pe-7s-date mb-20 text-white"></i>
+                                <h2 data-animation-duration="1000" data-value="30" class="animate-number text-theme-colored2 font-42 font-weight-600 mt-0 mb-15">0</h2>
+                                <h5 class="text-white text-uppercase">Active Days</h5>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                            <div class="funfact">
+                                <i class="pe-7s-news-paper mb-20 text-white"></i>
+                                <h2 data-animation-duration="1000" data-value="{{ Avg_Score }}" class="animate-number text-theme-colored2 font-42 font-weight-600 mt-0 mb-15">0</h2>
+                                <h5 class="text-white text-uppercase">Average Score</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <br>
+
+                        <!-- Section Quiz -->
+            <section>
+                <div class="container pb-50">
+                    <div class="section-content">
+                        <div class="col-md-6 col-md-offset-3  text-center">
+                            <h2 class="title text">My <span class="text-theme-colored2">Quizzes</span></h2>
+                            <div class="line-bottom-centered"></div>
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <div class="icon-box hover-effect border-1px text-center bg-silver-light hover-box-shadow p-15 pt-40 pb-30">
+                                    <a class="icon icon-circled icon-lg bg-theme-colored2">
+                                        <i class="ficon-clipboard text-white font-42"></i>
+                                    </a>
+                                    <h4 class="icon-box-title text-uppercase font-weight-600 font-20 mt-15"><a>{{ ProgCode }} Mock Quiz 1</a></h4>
+                                    <p class="">The {{ ProgCode }} exam is administered by the Project Management Institute. Start your test prep right now with our free {{ ProgCode }} practice exam.</p>
+                                        {% if Quiz1%}
+                                            <a class="btn btn-info btn-xl mt-15 mr-10" href="/mock-quiz/account/quiz-1"> Start Quiz </a>
+                                        {% endif %}
+                                        {% if Q1 != '' %}
+                                        <a class="btn btn-info btn-xl mt-15 mr-10" href="/mock-quiz/account/quiz-1/1/result"> View Results </a>
+                                        {% endif %}
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="icon-box hover-effect border-1px text-center bg-silver-light hover-box-shadow p-15 pt-40 pb-30">
+                                    <a class="icon icon-circled icon-lg bg-theme-colored2">
+                                        <i class="ficon-clipboard text-white font-42"></i>
+                                    </a>
+                                    <h4 class="icon-box-title text-uppercase font-weight-600 font-20 mt-15"><a>{{ ProgCode }} Mock Quiz 2</a></h4>
+                                    <p class="">The {{ ProgCode }} exam is administered by the Project Management Institute. Start your test prep right now with our free {{ ProgCode }} practice exam.</p>
+                                        {% if Quiz2 %}
+                                            <a class="btn btn-info btn-xl mt-15 mr-10" href="/mock-quiz/account/quiz-2"> Start Quiz </a>
+                                        {% endif %}
+                                        {% if Q2 != '' %}
+                                        <a class="btn btn-info btn-xl mt-15 mr-10" href="/mock-quiz/account/quiz-2/1/result"> View Results </a>
+                                        {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="icon-box hover-effect border-1px text-center bg-silver-light hover-box-shadow p-15 pt-40 pb-30">
+                                    <a class="icon icon-circled icon-lg bg-theme-colored2">
+                                        <i class="ficon-clipboard text-white font-42"></i>
+                                    </a>
+                                    <h4 class="icon-box-title text-uppercase font-weight-600 font-20 mt-15"><a >{{ ProgCode }} Mock Quiz 3</a></h4>
+                                    <p class="">The {{ ProgCode }} exam is administered by the Project Management Institute. Start your test prep right now with our free {{ ProgCode }} practice exam.</p>
+                                        {% if Quiz3 %}
+                                            <a class="btn btn-info btn-xl mt-15 mr-10" href="/mock-quiz/account/quiz-3"> Start Quiz </a>
+                                        {% endif %}
+                                        {% if Q3 != '' %}
+                                        <a class="btn btn-info btn-xl mt-15 mr-10" href="/mock-quiz/account/quiz-3/1/result"> View Results </a>
+                                        {% endif %}
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <br>
+        {% endblock %}
+
+
+
+    {% endif %}
+{% endif %}
+<!-- end main-content -->
+
+

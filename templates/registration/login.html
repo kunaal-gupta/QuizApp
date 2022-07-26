@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <head>
+    <style>
+        .label {
+
+        padding-top: 40px;
+        color: black;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 15px;
+        }
+
+                .text {
+
+        padding-top: 40px;
+        color: black;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: bold;
+        font-size: 20px;
+        }
+
+    </style>
+    </head>
+
+  <!-- Start main-content -->
+  <div class="main-content">
+    <!-- Section: home -->
+    <section id="home" class="divider bg-lighter">
+      <div class="display-table">
+        <div class="display-table-cell">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 col-md-push-3">
+                <h2 class="text-theme-colored mt-0 pt-5"> <center> <b> Login Form</b> </center></h2>
+                <hr>
+
+                  {% if form.errors %}
+                      <h5> <b> <center> Your username and password didn't match. Please try again. </center></b></h5>
+                  {% endif %}
+
+                  {% if next %}
+                    {% if user.is_authenticated %}
+                        <h6> <center> Your account doesn't have access to Quiz Dashboard. To proceed, please log in with correct credentials that have access.</center></h6>
+                    {% else %}
+                      <p>Please login to see this page.</p>
+                    {% endif %}
+                  {% endif %}
+
+
+                <form name="login-form" method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+
+
+                    <div class="form-group">
+                            <br>
+                        <label class="label" for="{{ form.username.id_for_label }}">Username:</label>
+                        {{ form.username }}
+
+                    </div>
+                    <div class="form-group">
+
+                        <label class="label" for="{{ form.password.id_for_label }}">Password: </label>
+                        {{ form.password }}
+                    </div>
+
+                  <div class="clear text-center pt-10" style="font-size: 40px; font-weight: bold">
+                      <input type="submit"  value = "Login to your Dashboard"  class="btn btn-info btn-xl mt-15 mr-10 btn-block no-border" data-bg-color="#00acee">
+                      <input type="hidden" name="next"  value="dashboard">
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+{% endblock %}

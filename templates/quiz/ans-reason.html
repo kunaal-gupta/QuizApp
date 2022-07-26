@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <style>
+            html {
+            user-select: none;
+        }
+
+    </style>
+
+       <header id="header" class="header bg-white navbar-scrolltofixed ">
+            <div class="header-nav navbar-sticky navbar-sticky-animated">
+
+                <div style="background-color: #0BA8E6; font-size: 3.5vw; color: white; font-family: Calibri" >
+                    <center> <b> Welcome to {{ ProgCode }} Mock Quiz {{ QuizNo }} - Solutions</b> </center>
+                </div>
+
+            </div>
+       </header>
+
+             <script>
+                function Clean() {
+                  document.body.innerHTML="";
+                }
+
+            </script>
+
+    <style>
+    a:hover {
+      background-color: white;
+    }
+
+    </style>
+
+
+
+    <form method='post'>
+
+        {% csrf_token %}
+            <div class="hover-box-shadow", style="margin-left: 1300px; margin-right: 10px; padding: 5px">
+                <h3> <b>Score: {{ Scores }} / {{ QperQuiz }} </b></h3>
+            </div>
+
+            <div  style = "margin-left: 60px; margin-right: 240px">
+            <div class = "radio" style = "margin-left: 60px; margin-right: 240px; margin-top: 20px">
+                <h4> <label for="b" > <b> Ques: {{ QuesNo }} </b>{{   QuizArray.Ques}}</label> </h4>
+            </div>
+
+
+            <div style="margin-left: 70px; margin-top: 20px; font-size: 16px">
+
+                {% if QuizArray.Option_1 == QuizArray.Correct_Option and QuizArray.Option_1 != ""  %}
+
+                    <div class = "radio" >
+                        <input class="form-check-input" disabled style="margin-left: 20px" type="radio" id="gridRadios1" value="{{QuizArray.Option_1}}" name=" {{ QuizArray.Ques }}">
+                        <label class="form-check-label" for="gridRadios1" style="color: limegreen; margin-left: 25px">
+                            <h7> {{QuizArray.Option_1}} </h7>
+                        </label>
+                    </div>
+                {% elif QuizArray.Option_1 != QuizArray.Correct_Option and QuizArray.Option_1 != "" and QuizArray.Response == 1 %}
+                    <div class = "radio" >
+                        <input class="form-check-input" disabled style="margin-left: 20px" type="radio" id="gridRadios1" value="{{QuizArray.Option_1}}" name=" {{ QuizArray.Ques }}">
+                        <label class="form-check-label" for="gridRadios1" style="margin-left: 25px; color:red">
+                            <h7> {{QuizArray.Option_1}} </h7>
+                        </label>
+                    </div>
+                {% elif QuizArray.Option_1 != QuizArray.Correct_Option and QuizArray.Option_1 != "" and QuizArray.Response != 1 %}
+                    <div class = "radio" >
+                        <input class="form-check-input" disabled style="margin-left: 20px" type="radio" id="gridRadios1" value="{{QuizArray.Option_1}}" name=" {{ QuizArray.Ques }}">
+                        <label class="form-check-label" for="gridRadios1" style="margin-left: 25px">
+                            <h7> {{QuizArray.Option_1}} </h7>
+                        </label>
+                    </div>
+                {% endif %}
+
+                {% if QuizArray.Option_2 == QuizArray.Correct_Option and QuizArray.Option_2 != ""  %}
+
+                    <div class = "radio" >
+                        <input class="form-check-input" disabled style="margin-left: 20px" type="radio" id="gridRadios1" value="{{QuizArray.Option_2}}" name=" {{ QuizArray.Ques }}">
+                        <label class="form-check-label" for="gridRadios1" style="color: limegreen; margin-left: 25px">
+                            <h7> {{QuizArray.Option_2}} </h7>
+                        </label>
+                    </div>
+                {% elif QuizArray.Option_2 != QuizArray.Correct_Option and QuizArray.Option_2 != "" and QuizArray.Response == 2 %}
+                    <div class = "radio" >
+                        <input class="form-check-input" disabled style="margin-left: 20px" type="radio" id="gridRadios1" value="{{QuizArray.Option_2}}" name=" {{ QuizArray.Ques }}">
+                        <label class="form-check-label" for="gridRadios1" style="margin-left: 25px; color:red">
+                            <h7> {{QuizArray.Option_2}} </h7>
+                        </label>
+                    </div>
+                {% elif QuizArray.Option_2 != QuizArray.Correct_Option and QuizArray.Option_2 != "" and QuizArray.Response != 2 %}
+                    <div class = "radio" >
+                        <input class="form-check-input" disabled style="margin-left: 20px" type="radio" id="gridRadios1" value="{{QuizArray.Option_2}}" name=" {{ QuizArray.Ques }}">
+                        <label class="form-check-label" for="gridRadios1" style="margin-left: 25px">
+                            <h7> {{QuizArray.Option_2}} </h7>
+                        </label>
+                    </div>
+                {% endif %}
+
+                {% if QuizArray.Option_3 == QuizArray.Correct_Option and QuizArray.Option_3 != ""  %}
+
+                    <div class = "radio" >
+                        <input class="form-check-input" disabled style="margin-left: 20px" type="radio" id="gridRadios1" value="{{QuizArray.Option_3}}" name=" {{ QuizArray.Ques }}">
+                        <label class="form-check-label" for="gridRadios1" style="color: limegreen; margin-left: 25px">
+                            <h7> {{QuizArray.Option_3}} </h7>
+                        </label>
+                    </div>
+                {% elif QuizArray.Option_3 != QuizArray.Correct_Option and QuizArray.Option_3 != "" and QuizArray.Response == 3 %}
+                    <div class = "radio" >
+                        <input class="form-check-input" disabled style="margin-left: 20px" type="radio" id="gridRadios1" value="{{QuizArray.Option_3}}" name=" {{ QuizArray.Ques }}">
+                        <label class="form-check-label" for="gridRadios1" style="margin-left: 25px; color:red">
+                            <h7> {{QuizArray.Option_3}} </h7>
+                        </label>
+                    </div>
+                {% elif QuizArray.Option_3 != QuizArray.Correct_Option and QuizArray.Option_3 != "" and QuizArray.Response != 3 %}
+                    <div class = "radio" >
+                        <input class="form-check-input" disabled style="margin-left: 20px" type="radio" id="gridRadios1" value="{{QuizArray.Option_3}}" name=" {{ QuizArray.Ques }}">
+                        <label class="form-check-label" for="gridRadios1" style="margin-left: 25px">
+                            <h7> {{QuizArray.Option_3}} </h7>
+                        </label>
+                    </div>
+                {% endif %}
+
+                {% if QuizArray.Option_4 == QuizArray.Correct_Option and QuizArray.Option_4 != ""  %}
+
+                    <div class = "radio" >
+                        <input class="form-check-input" disabled style="margin-left: 20px" type="radio" id="gridRadios1" value="{{QuizArray.Option_4}}" name=" {{ QuizArray.Ques }}">
+                        <label class="form-check-label" for="gridRadios1" style="color: limegreen; margin-left: 25px">
+                            <h7> {{QuizArray.Option_4}} </h7>
+                        </label>
+                    </div>
+                {% elif QuizArray.Option_4 != QuizArray.Correct_Option and QuizArray.Option_4 != "" and QuizArray.Response == 4 %}
+                    <div class = "radio" >
+                        <input class="form-check-input" disabled style="margin-left: 20px" type="radio" id="gridRadios1" value="{{QuizArray.Option_4}}" name=" {{ QuizArray.Ques }}">
+                        <label class="form-check-label" for="gridRadios1" style="margin-left: 25px; color:red">
+                            <h7> {{QuizArray.Option_4}} </h7>
+                        </label>
+                    </div>
+                {% elif QuizArray.Option_4 != QuizArray.Correct_Option and QuizArray.Option_4 != "" and QuizArray.Response != 4 %}
+                    <div class = "radio" >
+                        <input class="form-check-input" disabled style="margin-left: 20px" type="radio" id="gridRadios1" value="{{QuizArray.Option_4}}" name=" {{ QuizArray.Ques }}">
+                        <label class="form-check-label" for="gridRadios1" style="margin-left: 25px">
+                            <h7> {{QuizArray.Option_4}} </h7>
+                        </label>
+                    </div>
+                {% endif %}
+                {% if QuizArray.Option_5 == QuizArray.Correct_Option and QuizArray.Option_5 != ""  %}
+
+                    <div class = "radio" >
+                        <input class="form-check-input" disabled style="margin-left: 20px" type="radio" id="gridRadios1" value="{{QuizArray.Option_5}}" name=" {{ QuizArray.Ques }}">
+                        <label class="form-check-label" for="gridRadios1" style="color: limegreen; margin-left: 25px">
+                            <h7> {{QuizArray.Option_5}} </h7>
+                        </label>
+                    </div>
+                {% elif QuizArray.Option_5 != QuizArray.Correct_Option and QuizArray.Option_5 != "" and QuizArray.Response == 5 %}
+                    <div class = "radio" >
+                        <input class="form-check-input" disabled style="margin-left: 20px" type="radio" id="gridRadios1" value="{{QuizArray.Option_5}}" name=" {{ QuizArray.Ques }}">
+                        <label class="form-check-label" for="gridRadios1" style="margin-left: 25px; color:red">
+                            <h7> {{QuizArray.Option_5}} </h7>
+                        </label>
+                    </div>
+                {% elif QuizArray.Option_5 != QuizArray.Correct_Option and QuizArray.Option_5 != "" and QuizArray.Response != 5 %}
+                    <div class = "radio" >
+                        <input class="form-check-input" disabled style="margin-left: 20px" type="radio" id="gridRadios1" value="{{QuizArray.Option_5}}" name=" {{ QuizArray.Ques }}">
+                        <label class="form-check-label" for="gridRadios1" style="margin-left: 25px">
+                            <h7> {{QuizArray.Option_5}} </h7>
+                        </label>
+                    </div>
+                {% endif %}
+                {% if QuizArray.Option_6 == QuizArray.Correct_Option and QuizArray.Option_6 != ""  %}
+
+                    <div class = "radio" >
+                        <input class="form-check-input" disabled style="margin-left: 20px" type="radio" id="gridRadios1" value="{{QuizArray.Option_6}}" name=" {{ QuizArray.Ques }}">
+                        <label class="form-check-label" for="gridRadios1" style="color: limegreen; margin-left: 25px">
+                            <h7> {{QuizArray.Option_6}} </h7>
+                        </label>
+                    </div>
+                {% elif QuizArray.Option_6 != QuizArray.Correct_Option and QuizArray.Option_6 != "" and QuizArray.Response == 6 %}
+                    <div class = "radio" >
+                        <input class="form-check-input" disabled style="margin-left: 20px" type="radio" id="gridRadios1" value="{{QuizArray.Option_6}}" name=" {{ QuizArray.Ques }}">
+                        <label class="form-check-label" for="gridRadios1" style="margin-left: 25px; color:red">
+                            <h7> {{QuizArray.Option_6}} </h7>
+                        </label>
+                    </div>
+                {% elif QuizArray.Option_6 != QuizArray.Correct_Option and QuizArray.Option_6 != "" and QuizArray.Response != 6 %}
+                    <div class = "radio" >
+                        <input class="form-check-input" disabled style="margin-left: 20px" type="radio" id="gridRadios1" value="{{QuizArray.Option_6}}" name=" {{ QuizArray.Ques }}">
+                        <label class="form-check-label" for="gridRadios1" style="margin-left: 25px">
+                            <h7> {{QuizArray.Option_6}} </h7>
+                        </label>
+                    </div>
+                {% endif %}
+
+                <div class = "radio" style="margin-left: 10px; margin-top: 20px; font-size: 15px">
+                    <h4> <b> Reasoning:</b> {{QuizArray.Answer_Description}} </h4>
+                </div>
+
+            </div>
+            </div>
+
+
+
+        <div class="inline-block">
+            {% if QuesNo != 1 %}
+            <a style = "margin-left: 100px; font-weight: bold; font-size: 20px" href='http://127.0.0.1:8000/mock-quiz/account/quiz-{{ QuizNo }}/{{Previous}}/result' id = 'previous' class="btn btn-info btn-xl mt-15 mr-10">
+                    Previous </a>
+            {% endif %}
+
+            {% if QuesNo < QperQuiz %}
+            <a style = "margin-left: 1000px; font-weight: bold; font-size: 20px" href='http://127.0.0.1:8000/mock-quiz/account/quiz-{{ QuizNo }}/{{Next}}/result' id = 'next' class="btn btn-info btn-xl mt-15 mr-10">
+                Next </a>
+
+            {% elif QuesNo == QperQuiz %}
+            <a style = "margin-left: 800px; font-weight: bold; font-size: 20px" href='http://127.0.0.1:8000/mock-quiz/account/login/dashboard/' id = 'Return' class="btn btn-info btn-xl mt-15 mr-10">
+                Return to Dashboard </a>
+            {% endif %}
+        </div>
+
+
+            <br><br>
+
+    </form>
+
+
+{% endblock %}
+
+

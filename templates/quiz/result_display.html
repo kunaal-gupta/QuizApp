@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container ">
+
+    <div class="card-columns">
+            <img class="card-img-top" src="http://kmit.in/emagazine/wp-content/uploads/2018/02/karnataka-results.jpg" alt="Result logo" height="300">
+            <div class="card-body" style="font-size: 20px; font-family: 'Calibri'">
+                 <div class="col-sm">
+                     <a class="card-text" style="font-size: 25px; color: black;"><b> Your result is {{ percent }} %</b></a>
+                     <a style="font-family: 'Calibri'; font-size: 22px; width: 28%; margin-left: 470px" class="btn btn-info btn-xl mt-15 mr-10"
+                           href='/mock-quiz/account/quiz-{{ QuizNo }}/1/result'> <b> Check out detailed solution </b></a>
+                 </div>
+
+                <p class="card-text">Correct Questions: {{correct}}</p>
+                <p class="card-text">Incorrect Questions: {{wrong}}</p>
+                <p class="card-text">Total Number of Questions: {{total}}</p> <br>
+
+                <h2><b><center> All the best for next quiz!</center></b></h2><br>
+            </div>
+
+    </div>
+</div>
+
+{% endblock %}

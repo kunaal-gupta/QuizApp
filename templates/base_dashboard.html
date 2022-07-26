@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<title>My Dashboard</title>
+
+<!-- Favicon and Touch Icons -->
+
+<!-- Stylesheet -->
+<link  href="{% static "myWebApp/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+<link  href="{% static "myWebApp/css/jquery-ui.min.css" %}" rel="stylesheet" type="text/css">
+<link  href="{% static "myWebApp/css/animate.css" %}" rel="stylesheet" type="text/css">
+<link  href="{% static "myWebApp/css/css-plugin-collections.css" %}" rel="stylesheet"/>
+<!-- CSS | menuzord megamenu skins -->
+<link  href="{% static "myWebApp/css/menuzord-megamenu.css" %}" rel="stylesheet"/>
+<link id="menuzord-menu-skins"  href="{% static "myWebApp/css/menuzord-skins/menuzord-boxed.css" %}" rel="stylesheet"/>
+<!-- CSS | Main style file -->
+<link  href="{% static "myWebApp/css/style-main.css" %}" rel="stylesheet" type="text/css">
+<!-- CSS | Preloader Styles -->
+<link  href="{% static "myWebApp/css/preloader.css" %}" rel="stylesheet" type="text/css">
+<!-- CSS | Custom Margin Padding Collection -->
+<link  href="{% static "myWebApp/css/custom-bootstrap-margin-padding.css" %}" rel="stylesheet" type="text/css">
+<!-- CSS | Responsive media queries -->
+<link  href="{% static "myWebApp/css/responsive.css" %}" rel="stylesheet" type="text/css">
+<!-- CSS | Style css. This is the file where you can place your own custom css code. Just uncomment it and use it. -->
+<!-- <link  href="{% static "myWebApp/css/style.css" %}" rel="stylesheet" type="text/css"> -->
+
+
+<!-- CSS | Theme Color -->
+<link href=" {% static "myWebApp/css/colors/theme-skin-color-set6.css" %}" rel="stylesheet" type="text/css">
+
+<!-- external javascripts -->
+<script src=" {% static "myWebApp/js/jquery-2.2.4.min.js" %}" ></script>
+<script src=" {% static "myWebApp/js/jquery-ui.min.js" %}" ></script>
+<script src=" {% static "myWebApp/js/bootstrap.min.js" %}" ></script>
+<!-- JS | jquery plugin collection for this theme -->
+<script src=" {% static "myWebApp/js/jquery-plugin-collection.js" %}" ></script>
+
+<!-- Revolution Slider 5.x SCRIPTS -->
+<script src=" {% static "myWebApp/js/revolution-slider/js/jquery.themepunch.tools.min.js" %}" ></script>
+<script src=" {% static "myWebApp/js/revolution-slider/js/jquery.themepunch.revolution.min.js" %}" ></script>
+
+<body class="vertical-nav">
+<div id="wrapper" class="clearfix">
+    <!-- preloader -->
+    {#    <div id="preloader">#}
+    {#        <div id="spinner">#}
+    {#            <div class="preloader-loading-wrapper">#}
+    {#                <div class="cssload-loading"><i></i><i></i></div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+    <!-- Header -->
+
+
+<header id="header" class="header layer-overlay overlay-white-8">
+    <div class="header-nav">
+        <div class="header-nav-wrapper">
+            <div class="container-fluid p-0">
+
+                {% block user_profile_content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+    {% block dashboard_content %}
+    {% endblock %}
+    <!-- Footer -->
+{% endblock %}
