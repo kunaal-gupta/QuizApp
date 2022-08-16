@@ -2,13 +2,21 @@
 
 **Programming Language**: Python, Django, HTML/CSS, Bootstrap, JavaScript & JQuery
 
+**Designed For** : P P Pariyojana Consulting Services Pvt. Ltd.
+
+**Description**: Developed a full-stack quiz application using Django's framework, enabling the company to provide course training preparation exams to its clients during internship 
+
 **Software used**: 
  * Pycharm (Django)          
  * Terminal    
  
- **Designed For** : P P Pariyojana Consulting Services Pvt. Ltd.
-
-**Description**: Developed a full-stack quiz application using Django's framework, enabling the company to provide course training preparation exams to its clients during internship 
+ **Concepts**:
+ * Django Framework
+ * Python programing
+ * UI Design
+ * Web content development
+ * Client-side/server-side scripting 
+ * Network security
 
 **Included Files**: 
  * _pycache_/
